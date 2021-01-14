@@ -21,6 +21,10 @@ body{
     width: 50vw;
     height: 20vh;
     border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #question{
@@ -41,7 +45,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -53,4 +57,14 @@ body{
     flex-direction: row;
     justify-content:center;
     align-items: center;
+}
+
+#accepter{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    border: 1px solid black;
+    width: 30%;
+    padding: 3%;
 }
