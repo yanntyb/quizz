@@ -1,0 +1,56 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#action{
+    width: 50vw;
+    height: 20vh;
+    border: 1px solid black;
+}
+
+#question{
+    width: 50vw;
+    height: 20vh;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+#reponseDiv{
+    width: 50vw;
+    height: 50vh;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.reponse {
+    width: 20%;
+    height: 20%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
