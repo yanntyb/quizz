@@ -115,3 +115,13 @@ function afficherCorrection(tab){
     }
 }
 
+$("#accepter").mousedown(()=>{
+    $("#accepter").css({
+        backgroundColor: "red"
+    })
+}).mouseup(()=>{
+    $("#accepter").css({
+        backgroundColor: "white"
+    })
+})
+
