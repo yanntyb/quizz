@@ -23,7 +23,7 @@ body{
     height: 20vh;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -65,7 +65,7 @@ body{
     background-color: white;
 }
 
-#accepter{
+#accepter, #time, #reset{
     display:flex;
     flex-direction:row;
     justify-content:center;
@@ -76,6 +76,7 @@ body{
     box-shadow: 0px 0px 24px 0px #C39BD3;
     background-color: white;
     font-size: 2rem;
+    text-align: center;
 }
 
 #global{
@@ -95,3 +96,13 @@ body{
     padding: 2%
 
 }
+
+#start{
+    position: absolute;
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    background-color: #154360;
+    padding: 5rem;
+}
+

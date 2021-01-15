@@ -6,6 +6,8 @@ let dataJson;
 let afficherCorrectionState = false;
 let choosedQuestion;
 let indexOrder = 0;
+let run = false;
+let seconde = 0;
 
 $.ajax({
     url: "question.json",
@@ -14,9 +16,8 @@ $.ajax({
     success:function(data){
         dataJson = data;
         order = randomTab(data.len);
-        resetAll(data);
-
-        accepter(choosedQuestion);
+        start(data);
+        startTimer();
     }
 })
 
@@ -33,7 +34,6 @@ function randomTab(max){
 }
 
 function afficher(data){
-
     let choosedIndex = "question" + order[index];
     $("#question").text(data[choosedIndex].question);
     for(let i = 1; i < data[choosedIndex].len + 1; i++){
@@ -42,8 +42,9 @@ function afficher(data){
         $("#reponseDiv").append(reponse);
         $(reponse).click(function() {
             reset();
-            clickReponse($(this))
+            clickReponse($(this));
         })
+
     }
     let indexTab = 0;
     for(property in data[choosedIndex].reponse){
@@ -70,6 +71,7 @@ function reset(){
 
 function accepter(data){
     $("#accepter").unbind("click").click(function(){
+        console.log("click")
         let indexElem = 0;
         let matchIndex;
         for(let i in data) {
@@ -79,29 +81,36 @@ function accepter(data){
                 break;
             }
         }
+
         if(typeof(choosed) === "object"){
+            console.log(indexOrder)
             tabReponse.push([choosed.html(), matchIndex]);
             indexOrder++;
-            if(indexOrder <= order.length - 1){
+            if(indexOrder < order.length){
                 resetAll(data);
                 choosed = null;
             }
             else{
+                console.log("else")
                 if(!afficherCorrectionState){
                     reset();
                     afficherCorrectionState = true;
                     afficherCorrection(tabReponse);
+                    afficherResetButton();
+                    run = false;
                 }
             }
         }
     })
 }
 
-function resetAll(data){
+function resetAll(){
     $(".reponse").remove();
+    $("#question").html("");
     choosed = false;
     choosedQuestion = afficher(dataJson);
     accepter(choosedQuestion);
+
 
 }
 
@@ -134,3 +143,52 @@ $("#accepter").mousedown(()=>{
     })
 })
 
+function start(){
+    $("#question").html("");
+    $("#start").show();
+    $("#start").click(()=>{
+        afficherCorrectionState = false;
+        tabReponse = [];
+        indexOrder = 0;
+        run = true;
+        index = 0;
+        seconde = 0;
+        $("#start").hide();
+        resetAll();
+        accepter(choosedQuestion);
+        $("#question").css({
+            fontSize: "4rem"
+        });
+    })
+}
+
+function startTimer(){
+    let timer = function (){
+        setTimeout(() => {
+            if(run){
+                afficherTime(seconde);
+                seconde ++;
+            }
+            timer();
+        },1000);
+    }
+    timer();
+}
+
+function afficherTime(time){
+    $("#time").html(time + "<br>secondes");
+}
+
+function afficherResetButton(){
+    let resetButton = document.createElement("div");
+    resetButton.innerHTML = "Restart";
+    resetButton.id = "reset";
+    $(resetButton).click(() => {
+        index = 0;
+        start(dataJson);
+        $(resetButton).remove();
+
+
+    })
+    $("#action").append(resetButton);
+}
