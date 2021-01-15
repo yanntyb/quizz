@@ -106,3 +106,20 @@ body{
     padding: 5rem;
 }
 
+@media screen and (max-width: 600px){
+    #global{
+        width: 100%;
+        height: 100%;
+    }
+    #action, #question, #reponseDiv{
+        width: 100%;
+    }
+    #question {
+        height: min-content;
+    }
+    #score{
+        position: absolute;
+        bottom: 0;
+    }
+
+}

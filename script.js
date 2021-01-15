@@ -71,7 +71,6 @@ function reset(){
 
 function accepter(data){
     $("#accepter").unbind("click").click(function(){
-        console.log("click")
         let indexElem = 0;
         let matchIndex;
         for(let i in data) {
@@ -83,7 +82,6 @@ function accepter(data){
         }
 
         if(typeof(choosed) === "object"){
-            console.log(indexOrder)
             tabReponse.push([choosed.html(), matchIndex]);
             indexOrder++;
             if(indexOrder < order.length){
@@ -129,7 +127,7 @@ function afficherCorrection(tab){
     }
     let score = document.createElement("span");
     score.id = "score";
-    score.innerHTML += point + "/" + tab.length;
+    score.innerHTML += "Score : " + point + "/" + tab.length;
     $("#question").append(score);
 }
 
@@ -187,8 +185,6 @@ function afficherResetButton(){
         index = 0;
         start(dataJson);
         $(resetButton).remove();
-
-
     })
     $("#action").append(resetButton);
 }
