@@ -106,13 +106,22 @@ function resetAll(data){
 }
 
 function afficherCorrection(tab){
+    let point = 0;
     $("#question").html("").css({
         fontSize: "2rem"
     });
     for(let i = 0; i<tab.length; i++) {
-        if(tab[i][0] !== tab[i][1])
-            document.getElementById("question").innerHTML += "A la question : " + dataJson["question" + order[i]].question + " vous avez repondu " + tab[i][0] + " a la place de " + tab[i][1] + "<br>"
+        if(tab[i][0] !== tab[i][1]){
+            document.getElementById("question").innerHTML += "A la question : " + dataJson["question" + order[i]].question + " vous avez repondu " + tab[i][0] + " a la place de " + tab[i][1] + "<br>";
+        }
+        else{
+            point ++;
+        }
     }
+    let score = document.createElement("span");
+    score.id = "score";
+    score.innerHTML += point + "/" + tab.length;
+    $("#question").append(score);
 }
 
 $("#accepter").mousedown(()=>{
