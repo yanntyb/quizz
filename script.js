@@ -79,7 +79,6 @@ function accepter(data){
                 break;
             }
         }
-
         if(typeof(choosed) === "object"){
             tabReponse.push([choosed.html(), matchIndex]);
             indexOrder++;
@@ -89,6 +88,7 @@ function accepter(data){
             }
             else{
                 if(!afficherCorrectionState){
+                    reset();
                     afficherCorrectionState = true;
                     afficherCorrection(tabReponse);
                 }
@@ -99,17 +99,19 @@ function accepter(data){
 
 function resetAll(data){
     $(".reponse").remove();
-    let choosed = false;
+    choosed = false;
     choosedQuestion = afficher(dataJson);
     accepter(choosedQuestion);
 
 }
 
 function afficherCorrection(tab){
+    $("#question").html("").css({
+        fontSize: "2rem"
+    });
     for(let i = 0; i<tab.length; i++) {
-        if (tab[i][0] !== tab[i][1]) {
-            console.log("A la question: " + dataJson["question" + parseInt(i+1)].question + " vous avez repondu " + tab[i][0] + " a la place de " + tab[i][1]);
-        }
+        if(tab[i][0] !== tab[i][1])
+            document.getElementById("question").innerHTML += "A la question : " + dataJson["question" + order[i]].question + " vous avez repondu " + tab[i][0] + " a la place de " + tab[i][1] + "<br>"
     }
-
 }
+
