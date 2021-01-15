@@ -89,13 +89,13 @@ function accepter(data){
                 choosed = null;
             }
             else{
-                console.log("else")
                 if(!afficherCorrectionState){
-                    reset();
+
                     afficherCorrectionState = true;
                     afficherCorrection(tabReponse);
                     afficherResetButton();
                     run = false;
+                    reset();
                 }
             }
         }
@@ -151,6 +151,7 @@ function start(){
         run = true;
         index = 0;
         seconde = 0;
+        order = randomTab(dataJson.len);
         $("#start").hide();
         resetAll();
         accepter(choosedQuestion);
